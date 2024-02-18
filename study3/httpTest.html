@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>REST API Test</title>
+        <script>
+            function sendRequest(method, url, body) {
+                var xhr = new XMLHttpRequest()
+                xhr.open(method, url, true)
+                xhr.setRequestHeader("Content-Type", "text/plain") // 텍스트 전송
+                xhr.onload = function () {
+                    alert(xhr.responseText)
+                }
+                xhr.send(body)
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="sendRequest('GET', '/api/get')">GET Request</button>
+
+        <form onsubmit="sendRequest('POST', '/api/post', document.getElementById('post-data').value); return false;">
+            <input type="text" id="post-data" />
+            <button type="submit">POST Request</button>
+        </form>
+
+        <input type="text" id="put-data" />
+        <button onclick="sendRequest('PUT', '/api/put', document.getElementById('put-data').value)">PUT Request</button>
+
+        <input type="text" id="patch-data" placeholder="Enter PATCH data" />
+        <button onclick="sendRequest('PATCH', '/api/patch', document.getElementById('patch-data').value)">
+            PATCH Request
+        </button>
+
+        <input type="text" id="delete-data" placeholder="Enter DELETE data" />
+        <button onclick="sendRequest('DELETE', '/api/delete', document.getElementById('delete-data').value)">
+            DELETE Request
+        </button>
+    </body>
+</html>
